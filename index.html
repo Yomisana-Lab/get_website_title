@@ -79,13 +79,21 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #4caf50;
+            background-color: #1a1a1a;
             color: #fff;
             border: none;
             border-radius: 50%;
             padding: 10px;
             cursor: pointer;
             font-size: 20px;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Adjust the icon for dark theme */
+        body.dark-theme #toggleThemeButton {
+            color: #1a1a1a;
+            background-color: #fff;
         }
     </style>
     <title>Link Title Extractor</title>
@@ -104,7 +112,9 @@
 </div>
 
 <!-- Button to toggle theme -->
-<button id="toggleThemeButton" onclick="toggleTheme()">🌙</button>
+<button id="toggleThemeButton" onclick="toggleTheme()">
+    <span id="themeIcon">🌙</span>
+</button>
 
 <script>
 async function extractTitle() {
@@ -148,9 +158,30 @@ function handleKeyPress(event) {
     }
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    // 檢查是否首次訪問並且是黑暗模式
+    const isFirstVisit = localStorage.getItem("themeVisited") === null;
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    if (isFirstVisit && prefersDarkScheme) {
+        // 首次訪問且黑暗模式，添加 dark-theme 類
+        document.body.classList.add("dark-theme");
+        // 保存訪問狀態
+        localStorage.setItem("themeVisited", true);
+    }
+});
+
 function toggleTheme() {
-    // Toggle dark theme class on body
-    document.body.classList.toggle('dark-theme');
+    // 切換 dark-theme 類
+    document.body.classList.toggle("dark-theme");
+
+    // 根據主題切換表情符號
+    const themeIcon = document.getElementById("themeIcon");
+    if (document.body.classList.contains("dark-theme")) {
+        themeIcon.innerText = "🌞"; // 切換到太陽符號
+    } else {
+        themeIcon.innerText = "🌙"; // 切換到月亮符號
+    }
 }
 </script>
 
