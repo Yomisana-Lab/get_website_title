@@ -5,21 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            margin: 0;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         #container {
             text-align: center;
-            background-color: #fff;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, color 0.3s;
         }
 
         #urlInput {
@@ -29,22 +25,47 @@
             border-radius: 4px;
             margin-right: 10px;
             width: 300px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         #extractButton {
             padding: 10px 20px;
             font-size: 16px;
-            background-color: #4caf50;
-            color: #fff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         #titleDisplay {
             margin-top: 20px;
             font-size: 18px;
             color: #333;
+            transition: color 0.3s;
+        }
+
+        /* Dark theme styles */
+        body.dark-theme {
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+
+        #container.dark-theme {
+            background-color: #2d2d2d;
+        }
+
+        #urlInput.dark-theme {
+            background-color: #333;
+            color: #fff;
+        }
+
+        #extractButton.dark-theme {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        #titleDisplay.dark-theme {
+            color: #fff;
         }
     </style>
     <title>Link Title Extractor</title>
@@ -60,6 +81,9 @@
 
     <!-- Display area for the extracted title -->
     <div id="titleDisplay"></div>
+
+    <!-- Button to toggle theme -->
+    <button onclick="toggleTheme()">Toggle Theme</button>
 </div>
 
 <script>
@@ -102,6 +126,11 @@ function handleKeyPress(event) {
     if (event.key === 'Enter') {
         extractTitle();
     }
+}
+
+function toggleTheme() {
+    // Toggle dark theme class on body
+    document.body.classList.toggle('dark-theme');
 }
 </script>
 
