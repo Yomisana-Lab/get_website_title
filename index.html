@@ -12,6 +12,7 @@
             margin: 0;
             transition: background-color 0.3s, color 0.3s;
             height: 100vh;
+            overflow: hidden; /* Prevents scroll bars when content is smaller than the viewport */
         }
 
         #container {
@@ -75,7 +76,7 @@
 
         /* Toggle theme button styles */
         #toggleThemeButton {
-            position: absolute;
+            position: fixed;
             bottom: 20px;
             right: 20px;
             background-color: #4caf50;
@@ -84,6 +85,7 @@
             border-radius: 50%;
             padding: 10px;
             cursor: pointer;
+            font-size: 20px;
         }
     </style>
     <title>Link Title Extractor</title>
@@ -99,10 +101,10 @@
 
     <!-- Display area for the extracted title -->
     <div id="titleDisplay"></div>
-
-    <!-- Button to toggle theme -->
-    <button id="toggleThemeButton" onclick="toggleTheme()">🌙</button>
 </div>
+
+<!-- Button to toggle theme -->
+<button id="toggleThemeButton" onclick="toggleTheme()">🌙</button>
 
 <script>
 async function extractTitle() {
