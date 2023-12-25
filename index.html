@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Title Extractor</title>
+</head>
+<body>
+
+<!-- Input box for entering the target URL -->
+<input type="text" id="urlInput" placeholder="Enter target URL" onkeydown="handleKeyPress(event)">
+
+<!-- Button to trigger title extraction -->
+<button onclick="extractTitle()">Extract Title</button>
+
+<!-- Display area for the extracted title -->
+<div id="titleDisplay"></div>
+
+<script>
+async function extractTitle() {
+    try {
+        // Get the user-entered URL
+        const urlInput = document.getElementById('urlInput');
+        const targetURL = urlInput.value.trim();
+
+        // Validate the URL
+        if (!isValidURL(targetURL)) {
+            alert("Please enter a valid URL");
+            return;
+        }
+
+        // Fetch the title from the target URL
+        const response = await fetch(`https://cors-anywhere.herokuapp.com/${targetURL}`);
+        const text = await response.text();
+        const doc = new DOMParser().parseFromString(text, 'text/html');
+        const title = doc.querySelector('title').textContent;
+
+        // Display the extracted title
+        const titleDisplay = document.getElementById('titleDisplay');
+        titleDisplay.innerText = "Title: " + title;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+function isValidURL(url) {
+    // Add your URL validation logic here
+    return url.startsWith('http://') || url.startsWith('https://');
+}
+
+function handleKeyPress(event) {
+    // Check if the Enter key is pressed (key code 13)
+    if (event.key === 'Enter') {
+        extractTitle();
+    }
+}
+</script>
+
+</body>
+</html>
