@@ -11,20 +11,40 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
         }
 
         #container {
             text-align: center;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         #urlInput {
-            padding: 8px;
+            padding: 10px;
             font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+            width: 300px;
+        }
+
+        #extractButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
 
         #titleDisplay {
             margin-top: 20px;
             font-size: 18px;
+            color: #333;
         }
     </style>
     <title>Link Title Extractor</title>
@@ -33,10 +53,10 @@
 
 <div id="container">
     <!-- Input box for entering the target URL -->
-    <input type="text" id="urlInput" placeholder="Enter target URL" onkeydown="handleKeyPress(event)">
+    <input type="text" id="urlInput" placeholder="Enter target URL" onkeydown="handleKeyPress(event)" value="http://">
 
     <!-- Button to trigger title extraction -->
-    <button onclick="extractTitle()">Extract Title</button>
+    <button id="extractButton" onclick="extractTitle()">Extract Title</button>
 
     <!-- Display area for the extracted title -->
     <div id="titleDisplay"></div>
