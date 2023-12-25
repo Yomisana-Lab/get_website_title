@@ -8,16 +8,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 </head>
 <body>
-    
+    Open F12 to see the console.
 </body>
 <script>
 $(function(){
     $.ajax({
         type: "POST",
-        url: "api/index.php",
+        url: "https://tool.yomisana.xyz/get_title/api/index.php",
         data: {
             action: "get",
             url: "https://yomisana.xyz"
+        },
+        success: function (response) {
+            console.log(response);
+        }
+    });
+    $.ajax({
+        type: "POST",
+        url: "https://tool.yomisana.xyz/get_title/api/index.php",
+        data: {
+            action: "get",
+            url: "https://google.com"
         },
         success: function (response) {
             console.log(response);
