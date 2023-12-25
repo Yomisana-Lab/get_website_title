@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             echo json_encode(array('error' => 'URL parameter is missing'));
         }
-        echo "OK";
     }
 }
 
